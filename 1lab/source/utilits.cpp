@@ -4,22 +4,16 @@
 
 int validInt() {
     int number;
-
     while (true) {
         if (!(std::cin >> number)) {
-            std::cin.clear();
-            while (std::cin.get() != '\n');
             std::cout << "Please enter a valid number: ";
-            continue;
-        }
-
-        if (std::cin.get() != '\n') {
-            std::cin.clear();
-            while (std::cin.get() != '\n');
+        } else if (std::cin.get() != '\n') {
             std::cout << "Please enter only numbers without characters, try again: ";
-            continue;
+        } else {
+            return number;
         }
-
-        return number;
+        
+        std::cin.clear();
+        while (std::cin.get() != '\n');
     }
 }
