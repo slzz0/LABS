@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.12)
 
-project(lab3)
-
+project(lab3) 
 
 include_directories(headers)
 
@@ -27,4 +26,4 @@ set(HEADERS
     include/utils.h
 )
 
-add_executable(lab3 ${SOURCES} ${HEADERS})
+add_executable(lab3 ${SOURCES} ${HEADERS})  
