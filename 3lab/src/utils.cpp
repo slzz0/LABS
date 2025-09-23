@@ -6,8 +6,8 @@
 
 using namespace std;
 
-double validation() {
-    double number;
+int validation() {
+    int number;
 
     while (true) {
         if (!(std::cin >> number)) {
