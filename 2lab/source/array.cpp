@@ -1,6 +1,5 @@
 #include "../headers/array.h"
 
-#include "../headers/utilits.h"
 
 void Array::allocateMemory(int newSize) {
     freeMemory();
@@ -19,9 +18,7 @@ void Array::freeMemory() {
     size = 0;
 }
 
-Array::Array(int size) : size(size) {
-    allocateMemory(size);
-}
+Array::Array(int size) : size(size) { allocateMemory(size); }
 
 Array::~Array() { freeMemory(); }
 
@@ -60,6 +57,3 @@ bool Array::contains(int value) const {
     }
     return false;
 }
-
-
-
