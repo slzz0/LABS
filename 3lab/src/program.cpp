@@ -34,7 +34,7 @@ void runProgram() {
     Bicycle bicycle;
     Carriage carriage;
 
-    Transport* currentVehicle = nullptr;
+    const Transport* currentVehicle = nullptr;
     int choice;
     double distance;
     double weight;
