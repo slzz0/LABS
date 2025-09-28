@@ -1,107 +1,115 @@
 #include "../include/program.h"
+
 #include "../include/bicycle.h"
 #include "../include/car.h"
 #include "../include/carriage.h"
+#include "../include/consts.h"
 #include "../include/menu.h"
 #include "../include/transport.h"
 #include "../include/utils.h"
 
 using namespace std;
 
-void calculateAndPrintTime(const Transport* vehicle) {
+void inputCalculationData(double& distance, double& weight, int& passengers) {
     cout << "Enter distance (km): ";
-    double distance = validation();
-    double time = vehicle->calculateTime(distance);
-    cout << "Transportation time: " << time << " hours" << endl;
-}
-
-void calculateAndPrintPassengerCost(const Transport* vehicle) {
-    cout << "Enter distance (km): ";
-    double distance = validation();
-    cout << "Enter number of passengers: ";
-    int passengers = validation();
-    double cost = vehicle->calculatePassengerCost(distance, passengers);
-    if (cost >= 0) {
-        cout << "Passenger cost: " << cost << " BYN" << endl;
-    }
-}
-
-void calculateAndPrintCargoCost(const Transport* vehicle) {
-    cout << "Enter distance (km): ";
-    double distance = validation();
+    distance = validation();
+    
     cout << "Enter cargo weight (kg): ";
-    double weight = validation();
-    double cost = vehicle->calculateCost(distance, weight);
-    if (cost >= 0) {
-        cout << "Cargo cost: " << cost << " BYN" << endl;
-    }
+    weight = validation();
+    
+    cout << "Enter number of passengers: ";
+    passengers = validation();
+}
+
+void printAllCalculations(Transport* vehicle, double distance, double weight, int passengers) {
+    cout << "\n=== Results ===" << endl;
+    cout << "Transportation time: " << vehicle->calculateTime(distance) << " hours" << endl;
+    cout << "Cargo cost: " << vehicle->calculateCost(distance, weight) << " BYN" << endl;
+    cout << "Passenger cost: " << vehicle->calculatePassengerCost(distance, passengers) << " BYN" << endl;
+    cout << "==================" << endl;
 }
 
 void runProgram() {
-    Car car(0, 0, 0, 0);
-    Bicycle bicycle(0, 0, 0);
-    Carriage carriage(0, 0, 0, 0);
+    Car car;
+    Bicycle bicycle;
+    Carriage carriage;
 
     Transport* currentVehicle = nullptr;
     int choice;
+    double distance, weight;
+    int passengers;
 
     taskMenu();
 
     while (true) {
         showTransportMenu();
-        cout << "Select a transport type: ";
+        cout << "Enter your choice (1-3): ";
         choice = validation();
 
         switch (choice) {
             case 1:
                 currentVehicle = &car;
                 cout << "Selected: Car" << endl;
-                currentVehicle->inputDetails();  
+                currentVehicle->displayInfo();
+                
+                cout << "Enter distance (km): ";
+                distance = validation();
+                
+                cout << "Enter cargo weight (kg): ";
+                weight = validation();
+                weight = validateWeight(weight, 50);
+                
+                cout << "Enter number of passengers: ";
+                passengers = validation();
+                passengers = validatePassengers(passengers, 5);
+                
+                printAllCalculations(currentVehicle, distance, weight, passengers);
                 break;
+
             case 2:
                 currentVehicle = &bicycle;
                 cout << "Selected: Bicycle" << endl;
-                currentVehicle->inputDetails();  
+                currentVehicle->displayInfo();
+                
+                cout << "Enter distance (km): ";
+                distance = validation();
+                
+                cout << "Enter cargo weight (kg): ";
+                weight = validation();
+                weight = validateWeight(weight, 5); 
+                
+                cout << "Enter number of passengers: ";
+                passengers = validation();
+                passengers = validatePassengers(passengers, 1);
+                
+                printAllCalculations(currentVehicle, distance, weight, passengers);
                 break;
+
             case 3:
                 currentVehicle = &carriage;
                 cout << "Selected: Carriage" << endl;
-                currentVehicle->inputDetails();  
+                currentVehicle->displayInfo();
+                
+                cout << "Enter distance (km): ";
+                distance = validation();
+                
+                cout << "Enter cargo weight (kg): ";
+                weight = validation();
+                weight = validateWeight(weight, 30); 
+                
+                cout << "Enter number of passengers: ";
+                passengers = validation();
+                passengers = validatePassengers(passengers, 4); 
+                
+                printAllCalculations(currentVehicle, distance, weight, passengers);
                 break;
+
             case 4:
                 cout << "Exiting program..." << endl;
                 return;
             default:
                 cout << "Error: you have selected an incorrect option" << endl;
                 continue;
-        }
-
-        bool backToTransport = false;
-        while (!backToTransport && currentVehicle != nullptr) {
-            showCalculationMenu();
-            cout << "Select a calculation option: ";
-            int calcChoice = validation();
-
-            switch (calcChoice) {
-                case 1:
-                    calculateAndPrintTime(currentVehicle);
-                    break;
-                case 2:
-                    calculateAndPrintPassengerCost(currentVehicle);
-                    break;
-                case 3:
-                    calculateAndPrintCargoCost(currentVehicle);
-                    break;
-                case 4:
-                    currentVehicle->displayInfo();
-                    break;
-                case 5:
-                    backToTransport = true;
-                    break;
-                default:
-                    cout << "Error: you have selected an incorrect option" << endl;
-                    break;
-            }
         }
     }
 }

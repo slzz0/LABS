@@ -1,16 +1,15 @@
 #include "../include/carriage.h"
-#include "../include/utils.h"
-#include "../include/consts.h"
 
+#include "../include/consts.h"
+#include "../include/utils.h"
 
 using namespace std;
 
-Carriage::Carriage(double speed, double cost, double cap, int horses)
-    : Transport(speed, cost, cap), numberOfHorses(horses) {}
+Carriage::Carriage() : Transport(CARRIAGE_SPEED_IN_KM, CARRIAGE_COST_PER_KM, CARRIAGE_LOAD_CAP), numberOfHorses(NUMBER_OF_HORSES) {}
 
 double Carriage::calculateCost(double distance, double weight) const {
-    weight = validateWeight(weight, getCapacity());
-    return distance * getCostPerKm() * (weight / WEIGTH_UNIT) * numberOfHorses * CARRIAGE_HORSE_FACTOR;
+    return distance * getCostPerKm() * (weight / WEIGTH_UNIT) * numberOfHorses *
+           CARRIAGE_HORSE_FACTOR;
 }
 
 double Carriage::calculatePassengerCost(double distance, int passengers) const {

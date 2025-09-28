@@ -5,11 +5,9 @@
 
 using namespace std;
 
-Car::Car(double speed, double cost, double cap, int maxPass)
-    : Transport(speed, cost, cap), maxPassengers(maxPass) {}
+Car::Car() : Transport(CAR_SPEED_IN_KM, CAR_COST_PER_KM, CAR_LOAD_CAP), maxPassengers(CAR_MAX_PASS) {}
 
 double Car::calculateCost(double distance, double weight) const {
-    weight = validateWeight(weight, getCapacity());
     return distance * getCostPerKm() * (1 + weight / CAR_WEIGHT_FACTOR);
 }
 

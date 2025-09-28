@@ -19,12 +19,3 @@ void showTransportMenu() {
     cout << "========================================================" << endl;
 }
 
-void showCalculationMenu() {
-    cout << "\n\t=== SELECT CALCULATION ===" << endl;
-    cout << "1. Calculate Transportation Time" << endl;
-    cout << "2. Calculate Passenger Cost" << endl;
-    cout << "3. Calculate Cargo Cost" << endl;
-    cout << "4. Display Vehicle Information" << endl;
-    cout << "5. Back to Transport Selection" << endl;
-    cout << "========================================================" << endl;
-}

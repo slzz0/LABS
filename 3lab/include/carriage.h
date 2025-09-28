@@ -6,7 +6,7 @@ class Carriage : public Transport {
     int numberOfHorses;
 
    public:
-    Carriage(double speed, double cost, double cap, int horses);
+    Carriage();
     double calculateCost(double distance, double weight) const override;
     double calculatePassengerCost(double distance, int passengers) const override;
     void displayInfo() const override;
