@@ -21,7 +21,7 @@ void inputCalculationData(double& distance, double& weight, int& passengers) {
     passengers = validation();
 }
 
-void printAllCalculations(Transport* vehicle, double distance, double weight, int passengers) {
+void printAllCalculations(const Transport* vehicle, double distance, double weight, int passengers) {
     cout << "\n=== Results ===" << endl;
     cout << "Transportation time: " << vehicle->calculateTime(distance) << " hours" << endl;
     cout << "Cargo cost: " << vehicle->calculateCost(distance, weight) << " BYN" << endl;
@@ -36,7 +36,8 @@ void runProgram() {
 
     Transport* currentVehicle = nullptr;
     int choice;
-    double distance, weight;
+    double distance;
+    double weight;
     int passengers;
 
     taskMenu();
@@ -57,11 +58,11 @@ void runProgram() {
                 
                 cout << "Enter cargo weight (kg): ";
                 weight = validation();
-                weight = validateWeight(weight, 50);
+                weight = validateWeight(weight, CAR_LOAD_CAP);
                 
                 cout << "Enter number of passengers: ";
                 passengers = validation();
-                passengers = validatePassengers(passengers, 5);
+                passengers = validatePassengers(passengers, CAR_MAX_PASS);
                 
                 printAllCalculations(currentVehicle, distance, weight, passengers);
                 break;
@@ -76,7 +77,7 @@ void runProgram() {
                 
                 cout << "Enter cargo weight (kg): ";
                 weight = validation();
-                weight = validateWeight(weight, 5); 
+                weight = validateWeight(weight, BICYCLE_LOAD_CAP); 
                 
                 cout << "Enter number of passengers: ";
                 passengers = validation();
@@ -95,11 +96,10 @@ void runProgram() {
                 
                 cout << "Enter cargo weight (kg): ";
                 weight = validation();
-                weight = validateWeight(weight, 30); 
+                weight = validateWeight(weight, CARRIAGE_LOAD_CAP); 
                 
                 cout << "Enter number of passengers: ";
                 passengers = validation();
-                passengers = validatePassengers(passengers, 4); 
                 
                 printAllCalculations(currentVehicle, distance, weight, passengers);
                 break;

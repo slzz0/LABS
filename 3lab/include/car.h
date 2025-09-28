@@ -1,5 +1,7 @@
 #pragma once
+#include "../include/consts.h"
 #include "../include/transport.h"
+
 
 class Car : public Transport {
    private:

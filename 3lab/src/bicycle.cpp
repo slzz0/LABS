@@ -8,11 +8,11 @@ using namespace std;
 Bicycle::Bicycle() : Transport(BICYCLE_SPEED_IN_KM, BICYCLE_COST_PER_KM, BICYCLE_LOAD_CAP) {}   
 
 double Bicycle::calculatePassengerCost(double distance, int passengers) const {
-    return distance * getCostPerKm() * passengers;
+    return distance * BICYCLE_COST_PER_KM;  
 }
 
 double Bicycle::calculateCost(double distance, double weight) const {
-    return distance * getCostPerKm() * (1 + weight / BICYCLE_WEIGHT_FACTOR);
+    return distance * BICYCLE_COST_PER_KM * (1 + weight / BICYCLE_WEIGHT_FACTOR);
 }
 
 void Bicycle::displayInfo() const {

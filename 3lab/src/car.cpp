@@ -8,11 +8,11 @@ using namespace std;
 Car::Car() : Transport(CAR_SPEED_IN_KM, CAR_COST_PER_KM, CAR_LOAD_CAP){}
 
 double Car::calculateCost(double distance, double weight) const {
-    return distance * getCostPerKm() * (1 + weight / CAR_WEIGHT_FACTOR);
+     return distance * CAR_COST_PER_KM * (1 + weight / CAR_WEIGHT_FACTOR);
 }
 
 double Car::calculatePassengerCost(double distance, int passengers) const {
-    return distance * getCostPerKm() * passengers;
+    return distance * CAR_COST_PER_KM * passengers;
 }
 
 void Car::displayInfo() const {
