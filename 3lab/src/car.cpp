@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Car::Car() : Transport(CAR_SPEED_IN_KM, CAR_COST_PER_KM, CAR_LOAD_CAP), maxPassengers(CAR_MAX_PASS) {}
+Car::Car() : Transport(CAR_SPEED_IN_KM, CAR_COST_PER_KM, CAR_LOAD_CAP){}
 
 double Car::calculateCost(double distance, double weight) const {
     return distance * getCostPerKm() * (1 + weight / CAR_WEIGHT_FACTOR);

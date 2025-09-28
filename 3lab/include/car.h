@@ -3,7 +3,7 @@
 
 class Car : public Transport {
    private:
-    int maxPassengers;
+    int maxPassengers = CAR_MAX_PASS;
 
    public:
     Car();

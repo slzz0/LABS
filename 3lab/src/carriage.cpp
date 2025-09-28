@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Carriage::Carriage() : Transport(CARRIAGE_SPEED_IN_KM, CARRIAGE_COST_PER_KM, CARRIAGE_LOAD_CAP), numberOfHorses(NUMBER_OF_HORSES) {}
+Carriage::Carriage() : Transport(CARRIAGE_SPEED_IN_KM, CARRIAGE_COST_PER_KM, CARRIAGE_LOAD_CAP){}
 
 double Carriage::calculateCost(double distance, double weight) const {
     return distance * getCostPerKm() * (weight / WEIGTH_UNIT) * numberOfHorses *

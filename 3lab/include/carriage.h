@@ -3,7 +3,7 @@
 
 class Carriage : public Transport {
    private:
-    int numberOfHorses;
+    int numberOfHorses = NUMBER_OF_HORSES;
 
    public:
     Carriage();
