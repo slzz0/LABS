@@ -10,5 +10,4 @@ class Car : public Transport {
     double calculateCost(double distance, double weight) const override;
     double calculatePassengerCost(double distance, int passengers) const override;
     void displayInfo() const override;
-    void inputDetails() override;
 };

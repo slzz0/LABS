@@ -12,13 +12,12 @@ double Bicycle::calculatePassengerCost(double distance, int passengers) const {
 }
 
 double Bicycle::calculateCost(double distance, double weight) const {
-    weight = validateWeight(weight, getCapacity());
     return distance * getCostPerKm() * (1 + weight / BICYCLE_WEIGHT_FACTOR);
 }
 
 void Bicycle::displayInfo() const {
     cout << "Type: Bicycle" << "\n";
     Transport::displayInfo();
+    cout << "Max passengers: 1" << "\n";
     cout << "======" << "\n";
 }
-

@@ -23,8 +23,3 @@ void Carriage::displayInfo() const {
     cout << "======================" << "\n";
 }
 
-void Carriage::inputDetails() {
-    Transport::inputDetails();
-    cout << "Enter number of horses: ";
-    numberOfHorses = validation();
-}

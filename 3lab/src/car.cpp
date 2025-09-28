@@ -12,7 +12,6 @@ double Car::calculateCost(double distance, double weight) const {
 }
 
 double Car::calculatePassengerCost(double distance, int passengers) const {
-    passengers = validatePassengers(passengers, maxPassengers);
     return distance * getCostPerKm() * passengers;
 }
 
@@ -23,8 +22,3 @@ void Car::displayInfo() const {
     cout << "=====================" << "\n";
 }
 
-void Car::inputDetails() {
-    Transport::inputDetails();
-    cout << "Enter max number of passengers: ";
-    maxPassengers = validation();
-}
