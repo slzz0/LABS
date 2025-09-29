@@ -98,7 +98,7 @@ void Program::start() {
     while (true) {
         std::cout << "\n\tMENU OPTIONS" << "\n";
         std::cout << "1. Add member" << "\n";
-        std::cout << "2. Show membersы" << "\n";
+        std::cout << "2. Show members" << "\n";
         std::cout << "3. Exit" << "\n";
         std::cout << "Choose the option: ";
 
