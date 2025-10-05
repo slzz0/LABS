@@ -9,4 +9,5 @@
 1. [Лабораторная работа - Классы и Объекты](https://github.com/slzz0/LABS/tree/main/1lab)
 2. [Лабораторная работа - Дружественные функции. Перегрузка операций](https://github.com/slzz0/LABS/tree/main/2lab)  
 3. [Лабораторная работа - Наследование](https://github.com/slzz0/LABS/tree/main/3lab)
-4. [Лабораторная работа - Виртуальные функции. Абстрактные классы](https://github.com/slzz0/LABS/tree/main/4lab)  
+4. [Лабораторная работа - Виртуальные функции. Абстрактные классы](https://github.com/slzz0/LABS/tree/main/4lab)
+5. [Лабораторная работа - Шаблоны функций и классов](https://github.com/slzz0/LABS/tree/main/5lab)   
