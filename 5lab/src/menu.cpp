@@ -26,7 +26,7 @@ void findMaxInArray(const char* name) {
         if (size > 0) {
             break;
         }
-        std::cout << "Size must be positive. Please try again.\n";
+        std::cout << "Size must be positive. Please try again\n";
     }
 
     auto* arr = new T[size];
