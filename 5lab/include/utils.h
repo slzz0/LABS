@@ -4,7 +4,7 @@
 template <typename T>
 T findMax(const T* begin, const T* end) {
     if (begin == end || begin == nullptr || end == nullptr) {
-        std::cout << "The array is empty";
+        std::cout << "The array is empty.";
         return T();
     }
 
