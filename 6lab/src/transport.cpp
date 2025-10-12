@@ -9,11 +9,13 @@ Transport::Transport(double speed, double cost, double cap, std::string regNum)
 
 double Transport::calculateTime(double distance) const { return distance / speedPerH; }
 
+#include <format>
+
 double Transport::calculateCost(double distance, double weight) const {
     if (weight > capacity) {
         throw InvalidException(
-            "Load capacity exceeded! Capacity: " + std::to_string(static_cast<int>(capacity)) +
-            " kg, requested: " + std::to_string(static_cast<int>(weight)) + " kg");
+            std::format("Load capacity exceeded! Capacity: {} kg, requested: {} kg",
+                        static_cast<int>(capacity), static_cast<int>(weight)));
     }
     return distance * costPerKm * (weight / WEIGTH_UNIT);
 }
@@ -29,6 +31,8 @@ void Transport::displayInfo() const {
     std::cout << "Registration: " << registrationNumber << "\n";
 }
 
-void Transport::setRegistrationNumber(const std::string_view regNum) { registrationNumber = regNum; }
+void Transport::setRegistrationNumber(const std::string_view regNum) {
+    registrationNumber = regNum;
+}
 
 const char* Transport::getType() const { return "Transport vehicle"; }
