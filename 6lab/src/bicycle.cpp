@@ -1,6 +1,7 @@
 #include "../include/bicycle.h"
 
 #include <iostream>
+#include <format>
 
 #include "../include/consts.h"
 #include "../include/invalidException.h"
@@ -12,9 +13,13 @@ Bicycle::Bicycle()
 
 double Bicycle::calculateCost(double distance, double weight) const {
     if (weight > BICYCLE_LOAD_CAP) {
-        throw InvalidException("Bicycle can't carry such a load! Capacity: " +
-                               to_string(static_cast<int>(BICYCLE_LOAD_CAP)) +
-                               " kg, requested: " + to_string(static_cast<int>(weight)) + " kg");
+        throw InvalidException(
+            std::format(
+                "Bicycle can't carry such a load! Capacity: {} kg, requested: {} kg",
+                static_cast<int>(BICYCLE_LOAD_CAP),
+                static_cast<int>(weight)
+            )
+        );
     }
     return distance * BICYCLE_COST_PER_KM * (1 + weight / BICYCLE_WEIGHT_FACTOR);
 }

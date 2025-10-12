@@ -1,10 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
 project(lab6) 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-
 
 include_directories(headers)
 
@@ -32,4 +28,4 @@ set(HEADERS
     include/invalidException.h
 )
 
-add_executable(lab6 ${SOURCES} ${HEADERS})  
+add_executable(lab6 ${SOURCES} ${HEADERS})

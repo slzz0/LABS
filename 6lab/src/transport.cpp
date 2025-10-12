@@ -29,6 +29,6 @@ void Transport::displayInfo() const {
     std::cout << "Registration: " << registrationNumber << "\n";
 }
 
-void Transport::setRegistrationNumber(const std::string& regNum) { registrationNumber = regNum; }
+void Transport::setRegistrationNumber(const std::string_view regNum) { registrationNumber = regNum; }
 
 const char* Transport::getType() const { return "Transport vehicle"; }

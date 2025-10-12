@@ -1,6 +1,8 @@
 #include "../include/utils.h"
 
 #include <iostream>
+#include <string>
+#include <string_view>
 
 #include "../include/invalidException.h"
 
@@ -79,7 +81,8 @@ void demonstrateTransport(const Transport* transport, double distance, double we
         std::cout << "Error calculating passenger cost: " << e.what() << "\n";
     }
 }
-void validateString(const std::string& input, [[maybe_unused]] const std::string& fieldName) {
+
+void validateString(const std::string& input, [[maybe_unused]] std::string_view fieldName) {
     if (input.empty()) {
         throw InvalidException(input, "Field cannot be empty");
     }

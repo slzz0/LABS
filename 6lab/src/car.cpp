@@ -1,6 +1,7 @@
 #include "../include/car.h"
 
 #include <iostream>
+#include <format>
 
 #include "../include/consts.h"
 #include "../include/invalidException.h"
@@ -11,11 +12,17 @@ using namespace std;
 
 Car::Car() : Transport(CAR_SPEED_IN_KM, CAR_COST_PER_KM, CAR_LOAD_CAP, CAR_REG_NUMBER) {}
 
+#include <format>
+
 double Car::calculateCost(double distance, double weight) const {
     if (weight > CAR_LOAD_CAP) {
         throw InvalidException(
-            "Car can't carry such a load! Capacity: " + to_string(static_cast<int>(CAR_LOAD_CAP)) +
-            " kg, requested: " + to_string(static_cast<int>(weight)) + " kg");
+            std::format(
+                "Car can't carry such a load! Capacity: {} kg, requested: {} kg",
+                static_cast<int>(CAR_LOAD_CAP),
+                static_cast<int>(weight)
+            )
+        );
     }
     return distance * CAR_COST_PER_KM * (1 + weight / CAR_WEIGHT_FACTOR);
 }
