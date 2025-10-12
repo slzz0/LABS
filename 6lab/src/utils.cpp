@@ -79,7 +79,7 @@ void demonstrateTransport(const Transport* transport, double distance, double we
     }
 }
 
-void validateString(const std::string& input, const std::string& fieldName) {
+void validateString(const std::string& input, [[maybe_unused]] const std::string& fieldName) {
     if (input.empty()) {
         throw InvalidException(input, "Field cannot be empty");
     }

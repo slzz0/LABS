@@ -4,7 +4,6 @@
 #include "../include/invalidException.h"
 #include "../include/utils.h"
 
-
 Transport::Transport(double speed, double cost, double cap, std::string regNum)
     : speedPerH(speed), costPerKm(cost), capacity(cap), registrationNumber(std::move(regNum)) {}
 
