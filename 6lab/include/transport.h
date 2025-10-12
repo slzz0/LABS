@@ -19,5 +19,5 @@ class Transport {
     virtual void displayInfo() const;
     virtual const char* getType() const;
     std::string getRegistrationNumber() const { return registrationNumber; }
-    void setRegistrationNumber(const std::string_view& regNum);
+    void setRegistrationNumber(const std::string& regNum);
 };

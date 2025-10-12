@@ -1,7 +1,8 @@
 #include "../include/utils.h"
-#include "../include/invalidException.h"
 
 #include <iostream>
+
+#include "../include/invalidException.h"
 
 void inputTransportationData(double& distance, double& weight, int& passengers) {
     while (true) {
@@ -78,7 +79,6 @@ void demonstrateTransport(const Transport* transport, double distance, double we
         std::cout << "Error calculating passenger cost: " << e.what() << "\n";
     }
 }
-
 void validateString(const std::string& input, [[maybe_unused]] const std::string& fieldName) {
     if (input.empty()) {
         throw InvalidException(input, "Field cannot be empty");
@@ -90,8 +90,8 @@ void validateString(const std::string& input, [[maybe_unused]] const std::string
         }
         if (!isdigit(character) && (character < 'a' || character > 'z') &&
             (character < 'A' || character > 'Z')) {
-            throw InvalidException(
-                input, "Must contain only digits (0-9) and latin letters (a-z, A-Z)");
+            throw InvalidException(input,
+                                   "Must contain only digits (0-9) and latin letters (a-z, A-Z)");
         }
     }
 }
