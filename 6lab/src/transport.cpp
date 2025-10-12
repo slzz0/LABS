@@ -9,8 +9,6 @@ Transport::Transport(double speed, double cost, double cap, std::string regNum)
 
 double Transport::calculateTime(double distance) const { return distance / speedPerH; }
 
-#include <format>
-
 double Transport::calculateCost(double distance, double weight) const {
     if (weight > capacity) {
         throw InvalidException(
