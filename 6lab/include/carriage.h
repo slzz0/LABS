@@ -11,4 +11,5 @@ class Carriage : public Transport {
     double calculateCost(double distance, double weight) const override;
     double calculatePassengerCost(double distance, int passengers) const override;
     const char *getType() const override;
+    int getMaxPassengers() const override { return CAR_MAX_PASS; }
 };

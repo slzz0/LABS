@@ -1,11 +1,10 @@
 #include "../include/transport.h"
 
 #include <format>
+#include <iostream>
 
 #include "../include/consts.h"
 #include "../include/invalidException.h"
-#include "../include/utils.h"
-
 
 Transport::Transport(double speed, double cost, double cap, std::string regNum)
     : speedPerH(speed), costPerKm(cost), capacity(cap), registrationNumber(std::move(regNum)) {}
@@ -29,7 +28,7 @@ void Transport::displayInfo() const {
     std::cout << "Speed: " << speedPerH << " km/h" << "\n";
     std::cout << "Cost per km: " << costPerKm << " BYN" << "\n";
     std::cout << "Load capacity: " << capacity << " kg" << "\n";
-    std::cout << "Registration: " << registrationNumber << "\n";
+    std::cout << "Registration number: " << registrationNumber << "\n";
 }
 
 void Transport::setRegistrationNumber(const std::string_view regNum) {

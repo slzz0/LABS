@@ -1,6 +1,5 @@
 #pragma once
-#include <iostream>
-#include <string_view>
+#include <string>
 
 class Transport {
    private:
@@ -20,4 +19,6 @@ class Transport {
     virtual const char* getType() const;
     std::string getRegistrationNumber() const { return registrationNumber; }
     void setRegistrationNumber(const std::string_view regNum);
+    double getLoadCapacity() const { return capacity; }
+    virtual int getMaxPassengers() const { return 1; }
 };

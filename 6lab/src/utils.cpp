@@ -1,35 +1,49 @@
 #include "../include/utils.h"
 
+#include <format>
 #include <iostream>
 #include <string>
 #include <string_view>
 
 #include "../include/invalidException.h"
 
-void inputTransportationData(double& distance, double& weight, int& passengers) {
+
+void inputTransportationData(const Transport* transport, double& distance, double& weight,
+                             int& passengers) {
     while (true) {
         try {
-            std::cout << "  Enter Transportation Data  " << "\n";
+            std::cout << "\n\tEnter Transportation Data" << "\n";
 
             std::cout << "Enter distance (km): ";
             distance = getNumber();
-
             if (distance <= 0) throw InvalidException("Distance must be positive");
 
             std::cout << "Enter cargo weight (kg): ";
             weight = getNumber();
-
             if (weight < 0) throw InvalidException("Weight cannot be negative");
 
-            std::cout << "Enter number of passengers (km): ";
+            if (weight > transport->getLoadCapacity()) {
+                throw InvalidException(std::format(
+                    "{} can't carry such a load! Capacity: {} kg, requested: {} kg",
+                    transport->getType(), static_cast<int>(transport->getLoadCapacity()),
+                    static_cast<int>(weight)));
+            }
+
+            std::cout << "Enter number of passengers: ";
             passengers = getNumber();
             if (passengers < 0) throw InvalidException("Number of passengers cannot be negative");
+
+            if (passengers > transport->getMaxPassengers()) {
+                throw InvalidException(
+                    std::format("{} can't carry that many passengers! Max: {}, requested: {}",
+                                transport->getType(), transport->getMaxPassengers(), passengers));
+            }
 
             std::cout << "\n";
             return;
         } catch (const InvalidException& e) {
             std::cout << "Input error: " << e.what() << "\n";
-            std::cout << "Please re-enter all transportation data.\n" << "\n";
+            std::cout << "Please re-enter all transportation data\n" << "\n";
         }
     }
 }
@@ -58,7 +72,7 @@ int getNumber() {
 
 void demonstrateTransport(const Transport* transport, double distance, double weight,
                           int passengers) {
-    std::cout << "\n\n\t Calculation for  " << transport->getType() << " " << "\n";
+    std::cout << "\t Calculation for " << transport->getType() << " " << "\n";
     transport->displayInfo();
 
     double time = transport->calculateTime(distance);
@@ -66,20 +80,12 @@ void demonstrateTransport(const Transport* transport, double distance, double we
               << time * 60 << " minutes)"
               << "\n";
 
-    try {
-        double cost = transport->calculateCost(distance, weight);
-        std::cout << "Transportation cost for " << weight << " kg: " << cost << " BYN" << "\n";
-    } catch (const InvalidException& e) {
-        std::cout << "Error calculating cargo cost: " << e.what() << "\n";
-    }
+    double cost = transport->calculateCost(distance, weight);
+    std::cout << "Transportation cost for " << weight << " kg: " << cost << " BYN" << "\n";
 
-    try {
-        double passengerCost = transport->calculatePassengerCost(distance, passengers);
-        std::cout << "Transportation cost for " << passengers << " passengers: " << passengerCost
-                  << " BYN" << "\n";
-    } catch (const InvalidException& e) {
-        std::cout << "Error calculating passenger cost: " << e.what() << "\n";
-    }
+    double passengerCost = transport->calculatePassengerCost(distance, passengers);
+    std::cout << "Transportation cost for " << passengers << " passengers: " << passengerCost
+              << " BYN" << "\n";
 }
 
 void validateString(const std::string& input, [[maybe_unused]] std::string_view fieldName) {

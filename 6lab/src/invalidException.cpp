@@ -1,7 +1,5 @@
 #include "../include/invalidException.h"
 
-#include "../include/transport.h"
-
 InvalidException::InvalidException(const std::string& input, const std::string& requirement) {
     message = "Invalid input: '" + input + "'. " + requirement;
 }

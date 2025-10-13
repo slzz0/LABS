@@ -5,7 +5,6 @@
 #include "../include/bicycle.h"
 #include "../include/car.h"
 #include "../include/carriage.h"
-#include "../include/consts.h"
 #include "../include/invalidException.h"
 #include "../include/menu.h"
 #include "../include/transport.h"
@@ -16,26 +15,24 @@ using namespace std;
 Transport* createTransport() {
     while (true) {
         try {
-            string regNumber;
-            cout << "Enter registration number (digits and latin letters only): ";
-            getline(cin, regNumber);
-            validateString(regNumber, "Registration number");
-
             int choice;
             showTransportMenu();
-            cout << "Enter ypur choice (1-4): ";
+            cout << "Enter your choice (1-4): ";
             choice = getNumber();
 
             Transport* transport = nullptr;
 
             switch (choice) {
                 case 1:
+                    std::cout << "\n\tYou have selected: Car";
                     transport = new Car;
                     break;
                 case 2:
+                std::cout << "\n\tYou have selected: Bicycle";
                     transport = new Bicycle;
                     break;
                 case 3:
+                std::cout << "\n\tYou have selected: Carriage";
                     transport = new Carriage;
                     break;
                 default:
@@ -44,6 +41,11 @@ Transport* createTransport() {
                     transport = new Car;
                     break;
             }
+
+            string regNumber;
+            cout << "\nEnter registration number (digits and latin letters only): ";
+            getline(cin, regNumber);
+            validateString(regNumber, "Registration number");
 
             transport->setRegistrationNumber(regNumber);
             return transport;
@@ -58,9 +60,9 @@ void runProgram() {
     double distance = 0;
     double weight = 0;
     int passengers = 0;
-    inputTransportationData(distance, weight, passengers);
-
     Transport *transport = createTransport();
+    inputTransportationData(transport, distance, weight, passengers);
+
     demonstrateTransport(transport, distance, weight, passengers);
     delete transport;
 }

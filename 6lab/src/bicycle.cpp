@@ -1,11 +1,9 @@
 #include "../include/bicycle.h"
 
 #include <format>
-#include <iostream>
 
 #include "../include/consts.h"
 #include "../include/invalidException.h"
-
 
 using namespace std;
 
