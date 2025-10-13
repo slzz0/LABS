@@ -43,7 +43,7 @@ void inputTransportationData(const Transport* transport, double& distance, doubl
             return;
         } catch (const InvalidException& e) {
             std::cout << "Input error: " << e.what() << "\n";
-            std::cout << "Please re-enter all transportation data\n" << "\n";
+            std::cout << "Please re-enter all transportation data.\n" << "\n";
         }
     }
 }
