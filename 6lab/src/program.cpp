@@ -28,27 +28,30 @@ Transport* createTransport() {
                     transport = new Car;
                     break;
                 case 2:
-                std::cout << "\n\tYou have selected: Bicycle";
+                    std::cout << "\n\tYou have selected: Bicycle";
                     transport = new Bicycle;
                     break;
                 case 3:
-                std::cout << "\n\tYou have selected: Carriage";
+                    std::cout << "\n\tYou have selected: Carriage";
                     transport = new Carriage;
                     break;
+                case 4:
+                    return nullptr;
                 default:
-                    cout << "Invalid choice!" << "\n";
-                    cout << "Using car by default" << "\n";
-                    transport = new Car;
-                    break;
+                    std::cout << "Invalid choice. Please try again.\n";
+                    continue;
             }
 
-            string regNumber;
-            cout << "\nEnter registration number (digits and latin letters only): ";
-            getline(cin, regNumber);
-            validateString(regNumber, "Registration number");
+            if (transport != nullptr) {
+                string regNumber;
+                cout << "\nEnter registration number (digits and latin letters only): ";
+                getline(cin, regNumber);
+                validateString(regNumber, "Registration number");
 
-            transport->setRegistrationNumber(regNumber);
-            return transport;
+                transport->setRegistrationNumber(regNumber);
+                return transport;
+            }
+
         } catch (const InvalidException& e) {
             cout << "Error: " << e.what() << "\n";
             cout << "Please try again.\n" << "\n";
@@ -60,7 +63,11 @@ void runProgram() {
     double distance = 0;
     double weight = 0;
     int passengers = 0;
-    Transport *transport = createTransport();
+    Transport* transport = createTransport();
+    if(transport == nullptr) {
+        std::cout << "Ending the program";
+        exit(0);
+    }
     inputTransportationData(transport, distance, weight, passengers);
 
     demonstrateTransport(transport, distance, weight, passengers);
