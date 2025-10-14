@@ -95,7 +95,7 @@ void validateString(const std::string& input, [[maybe_unused]] std::string_view 
 
     for (char character : input) {
         if (isspace(static_cast<unsigned char>(character))) {
-            throw InvalidException(input, "Must not contain spaces or whitespace characters");
+            throw InvalidException(input, "Must not contain spaces or whitespace characters.");
         }
         if (!isdigit(character) && (character < 'a' || character > 'z') &&
             (character < 'A' || character > 'Z')) {
