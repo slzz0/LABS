@@ -32,7 +32,6 @@ void findMaxInArray(const char* name) {
     auto* arr = new T[size];
     inputArray(arr, size);
     showArray(arr, size);
-
     T maxValue = findMax(arr, arr + size);
     std::cout << "Max value is: " << maxValue << "\n";
 
