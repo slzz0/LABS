@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <iostream>
 #include <string>
+#include <format>
 
 #include "../include/utils.h"
 
@@ -44,10 +45,9 @@ void Product::showProducts() {
 
     std::cout << "\n\t\t\t\tPRODUCTS LIST" << "\n";
 
-    std::cout << std::left << std::setw(25) << std::setfill(' ') << "Name" << std::setw(12)
-              << std::setfill(' ') << "Quantity" << std::setw(12) << std::setfill(' ') << "Price"
-              << std::setw(15) << std::setfill(' ') << "Receipt Date" << "\n";
-    std::cout << "------------------------------------------------------------" << "\n";
+    std::cout << std::format("{:<25}{:<12}{:<12}{:<15}\n", "Name", "Quantity", "Price",
+                             "Receipt Date");
+    std::cout << "------------------------------------------------------------\n";
 
     while (fileIn >> temp) {
         std::cout << std::left << std::setw(25) << std::setfill(' ')

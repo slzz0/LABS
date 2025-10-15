@@ -18,7 +18,7 @@ int Date::getDaysInMonth() const {
     return DAYS_IN_MONTH[month - 1];
 }
 
-void Date::showInvalidDataException(const std::string& date, const std::exception& excep) {
+void Date::showInvalidDataException(const std::string& date, const std::exception& excep) const {
     std::cout << "Incorrect date format: " << excep.what() << " | input: " << date << "\n";
 }
 

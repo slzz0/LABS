@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <iostream>
 #include <string>
+#include <format>
 
 class Date {
    private:
@@ -10,14 +11,14 @@ class Date {
     int year = 0;
 
     Date(int day, int month, int year);
-    void showInvalidDataException(const std::string& date, const std::exception& excep);
+    void showInvalidDataException(const std::string& date, const std::exception& excep) const;
     int getDaysInMonth() const;
     bool isLeapYear() const;
 
    public:
     Date() = default;
     friend std::ostream& operator<<(std::ostream& os, const Date& date) {
-        os << std::setw(2) << date.day << '.' << std::setw(2) << date.month << '.' << date.year;
+        os << std::format("{:02d}.{:02d}.{}", date.day, date.month, date.year);
         return os;
     }
 
