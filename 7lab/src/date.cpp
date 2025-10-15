@@ -60,8 +60,6 @@ void Date::inputDate() {
             std::cout << "Format error: " << e.what() << ". Please try again.\n";
         } catch (const std::out_of_range& e) {
             std::cout << "Range error: " << e.what() << ". Please try again.\n";
-        } catch (const std::exception& e) {
-            std::cout << "Unexpected error: " << e.what() << ". Please try again.\n";
         }
     }
 }
