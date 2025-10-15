@@ -53,12 +53,15 @@ void Date::inputDate() {
     std::string date;
     while (true) {
         date = getValue<std::string>("Enter the date with format dd.mm.yy: ");
-
         try {
             validateAndSet(date);
             break;
+        } catch (const std::invalid_argument& e) {
+            std::cout << "Format error: " << e.what() << ". Please try again.\n";
+        } catch (const std::out_of_range& e) {
+            std::cout << "Range error: " << e.what() << ". Please try again.\n";
         } catch (const std::exception& e) {
-            std::cout << "Error: " << e.what() << ". Please try again.\n";
+            std::cout << "Unexpected error: " << e.what() << ". Please try again.\n";
         }
     }
 }
