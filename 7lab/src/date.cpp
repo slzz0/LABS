@@ -42,11 +42,9 @@ void Date::validateAndSet(const std::string& date) {
         }
         Date value(dayValue, monthValue, yearValue);
         *this = value;
-    } 
-    catch (const std::invalid_argument& excep) {
+    } catch (const std::invalid_argument& excep) {
         showInvalidDataException(date, excep);
-    } 
-    catch (const std::out_of_range& excep) {
+    } catch (const std::out_of_range& excep) {
         showInvalidDataException(date, excep);
     }
 }
@@ -55,7 +53,7 @@ void Date::inputDate() {
     std::string date;
     while (true) {
         date = getValue<std::string>("Enter the date with format dd.mm.yy: ");
-        
+
         try {
             validateAndSet(date);
             break;

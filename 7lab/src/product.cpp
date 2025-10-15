@@ -7,9 +7,7 @@
 
 #include "../include/utils.h"
 
-
-void Product::addProduct()
-{
+void Product::addProduct() {
     Product temp;
 
     std::cout << "\n     Adding New Product " << "\n";
@@ -25,8 +23,7 @@ void Product::addProduct()
     std::ofstream fileOut;
     fileOut.open(FILE_WITH_PRODUCTS, std::ios::app);
 
-    if (!isValidFileOpen(fileOut, FILE_WITH_PRODUCTS))
-    {
+    if (!isValidFileOpen(fileOut, FILE_WITH_PRODUCTS)) {
         return;
     }
 
@@ -34,7 +31,6 @@ void Product::addProduct()
 
     fileOut.close();
 }
-
 
 void Product::showProducts() {
     std::ifstream fileIn;
@@ -56,7 +52,7 @@ void Product::showProducts() {
     while (fileIn >> temp) {
         std::cout << std::left << std::setw(25) << std::setfill(' ')
                   << (temp.nomitation.length() > 24 ? temp.nomitation.substr(0, 22) + ".."
-                                                   : temp.nomitation)
+                                                    : temp.nomitation)
                   << std::setw(12) << std::setfill(' ') << temp.quantity << std::setw(12)
                   << std::setfill(' ') << temp.price << std::setw(15) << std::setfill(' ')
                   << temp.receiptOfDate << "\n";
@@ -65,23 +61,19 @@ void Product::showProducts() {
     fileIn.close();
 }
 
-int Product::getQuantityWithYear(int year)
-{
+int Product::getQuantityWithYear(int year) {
     std::ifstream fileIn;
     fileIn.open(FILE_WITH_PRODUCTS);
 
     Product tmp;
     int totalQuantity = 0;
 
-    if (!isValidFileOpen(fileIn, FILE_WITH_PRODUCTS))
-    {
+    if (!isValidFileOpen(fileIn, FILE_WITH_PRODUCTS)) {
         return 0;
     }
 
-    while (fileIn >> tmp)
-    {
-        if (tmp.receiptOfDate.getYear() == year)
-        {
+    while (fileIn >> tmp) {
+        if (tmp.receiptOfDate.getYear() == year) {
             totalQuantity += tmp.quantity;
         }
     }

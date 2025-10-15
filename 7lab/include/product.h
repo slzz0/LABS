@@ -1,9 +1,10 @@
 #pragma once
 #include <iostream>
+#include <sstream>
 #include <string>
 
 #include "../include/date.h"
-#include <sstream>
+
 
 class Product {
    private:
@@ -14,19 +15,18 @@ class Product {
 
    public:
     Product() = default;
-    friend std::ostream &operator<<(std::ostream &os, const Product &product)
-    {
-        os << product.nomitation << "|" << product.quantity << " " << product.price << " " << product.receiptOfDate;
+    friend std::ostream& operator<<(std::ostream& os, const Product& product) {
+        os << product.nomitation << "|" << product.quantity << " " << product.price << " "
+           << product.receiptOfDate;
 
         return os;
     }
 
-     friend std::istream &operator>>(std::istream &is, Product &product) {
-        
+    friend std::istream& operator>>(std::istream& is, Product& product) {
         std::getline(is, product.nomitation, '|');
-       
+
         is >> product.quantity >> product.price >> product.receiptOfDate;
-       
+
         if (is.peek() == ' ') {
             is.ignore();
         }

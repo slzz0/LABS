@@ -16,27 +16,29 @@ class Date {
 
    public:
     Date() = default;
-    friend std::ostream &operator<<(std::ostream &ostm, const Date &date)
-{
-    ostm << std::setw(2) << std::setfill('0') << date.day << '.' 
-         << std::setw(2) << std::setfill('0') << date.month << '.'
-         << date.year;
-    return ostm;
-}
-
-friend std::istream &operator>>(std::istream &istm, Date &date)
-{
-    char dot1, dot2;
-    istm >> date.day >> dot1 >> date.month >> dot2 >> date.year;
-    
-    // Проверка корректности разделителей
-    if (dot1 != '.' || dot2 != '.') {
-        istm.setstate(std::ios::failbit);
+    friend std::ostream& operator<<(std::ostream& os, const Date& date) {
+        os << std::setw(2) << date.day << '.' << std::setw(2) << date.month << '.' << date.year;
+        return os;
     }
-    
-    return istm;
-}
-    void validateAndSet(const std::string &date);
+
+    friend std::istream& operator>>(std::istream& is, Date& date) {
+        std::string line;
+
+        if (std::getline(is, line, '.')) {
+            date.day = std::stoi(line);
+        }
+
+        if (std::getline(is, line, '.')) {
+            date.month = std::stoi(line);
+        }
+
+        if (std::getline(is, line, ' ')) {
+            date.year = std::stoi(line);
+        }
+
+        return is;
+    }
+    void validateAndSet(const std::string& date);
     void inputDate();
-    int getYear() const {return year;}
+    int getYear() const { return year; }
 };

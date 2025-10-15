@@ -44,7 +44,6 @@ void Program::runProgram() {
     int choice = 0;
 
     while (true) {
-        showTask();
         showMenu();
         choice = getValue<int>("\nPlease enter menu option: ");
 
