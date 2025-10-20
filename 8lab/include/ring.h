@@ -282,7 +282,7 @@ class Ring {
 
     void print() const {
         if (empty()) {
-            std::cout << "Ring is empty" << "\n";
+            throw EmptyRingException();
             return;
         }
 

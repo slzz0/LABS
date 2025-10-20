@@ -3,14 +3,15 @@
 
 #include "../include/algorithm.h"
 #include "../include/exceptions.h"
+#include "../include/menu.h"
 #include "../include/ring.h"
 #include "../include/utils.h"
-#include "../include/menu.h"
+
 
 template <typename T>
 class Program {
     Ring<T> ring;
-    Algorithm<T> algorithm;
+    [[no_unique_address]] Algorithm<T> algorithm;
 
     void createRing();
     void addRingElement();
@@ -27,7 +28,7 @@ class Program {
 };
 
 template <typename T>
-Program<T>::Program() {}
+Program<T>::Program() = default;
 
 template <typename T>
 void Program<T>::createRing() {
@@ -71,23 +72,23 @@ void Program<T>::addRingElement() {
                 std::cout << "Invalid choice, please try again!" << "\n";
         }
     }
-}   
+}
 
 template <typename T>
 void Program<T>::removeRingElement() {
     if (ring.empty()) {
-        std::cout << "Error, ring is empty" << "\n";
+        throw EmptyRingException();
         return;
     }
 
-    int opt = 0;
+    int choice = 0;
     showRemoveMenu();
 
     while (true) {
         std::cout << "Please enter the remove menu option: ";
-        opt = getValue<int>();
+        choice = getValue<int>();
 
-        switch (opt) {
+        switch (choice) {
             case 1:
                 ring.popFront();
                 std::cout << "Front element removed!" << "\n";
@@ -97,7 +98,7 @@ void Program<T>::removeRingElement() {
                 std::cout << "Back element removed!" << "\n";
                 return;
             default:
-                std::cout << "Wrong choice, please try again!" << "\n";
+                std::cout << "Invalid choice, please try again!" << "\n";
         }
     }
 }
@@ -105,28 +106,31 @@ void Program<T>::removeRingElement() {
 template <typename T>
 void Program<T>::showRing() {
     if (ring.empty()) {
-        std::cout << "Ring is empty." << "\n";
+        throw EmptyRingException();
         return;
     }
 
-    std::cout << "Ring elements: ";
+    std::cout << "[";
 
     auto it = ring.begin();
     for (size_t i = 0; i < ring.getSize(); i++) {
-        std::cout << *it << " ";
+        std::cout << *it;
+        if (i < ring.getSize() - 1) {
+            std::cout << ", ";
+        }
         ++it;
     }
-    std::cout << "\n";
+
+    std::cout << "]" << "\n";
 }
 
 template <typename T>
 void Program<T>::sortRing() {
     if (ring.empty()) {
-        std::cout << "Error, ring is empty." << "\n";
+        throw EmptyRingException();
         return;
-        std::cout << "The ring was sorting" << "\n";
     }
-
+    std::cout << "The ring was sorting" << "\n";
     try {
         algorithm.sort(ring);
     } catch (const RingException& e) {
@@ -137,7 +141,7 @@ void Program<T>::sortRing() {
 template <typename T>
 void Program<T>::searchRingElement() {
     if (ring.empty()) {
-        std::cout << "Error, ring is empty." << "\n";
+        throw EmptyRingException();
         return;
     }
 

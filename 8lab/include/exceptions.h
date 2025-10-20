@@ -17,11 +17,6 @@ class EmptyRingException : public RingException {
     EmptyRingException() : RingException("Operation on empty ring") {}
 };
 
-class InvalidIteratorException : public IteratorException {
-   public:
-    InvalidIteratorException() : IteratorException("Iterator does not belong to this ring") {}
-};
-
 class InfiniteLoopException : public IteratorException {
    public:
     InfiniteLoopException() : IteratorException("Infinite loop detected") {}
