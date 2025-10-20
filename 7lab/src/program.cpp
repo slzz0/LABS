@@ -32,7 +32,7 @@ void Program::displayQuantityWithYear() {
     int totalQuantity = Product::getQuantityWithYear(year);
 
     if (totalQuantity == 0) {
-        std::cout << "\nNo products" << year << "." << "\n";
+        std::cout << "\nNo products with a given year of manufacture: " << year << "." << "\n";
         return;
     }
 
