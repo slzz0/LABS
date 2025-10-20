@@ -14,7 +14,7 @@ class IteratorException : public RingException {
 
 class EmptyRingException : public RingException {
    public:
-    EmptyRingException() : RingException("Operation on empty ring") {}
+    EmptyRingException() : RingException("Operation on empty ring.") {}
 };
 
 class InfiniteLoopException : public IteratorException {
