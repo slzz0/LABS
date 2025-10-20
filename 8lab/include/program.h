@@ -200,8 +200,7 @@ void Program<T>::run() {
             case 7:
                 clearRing();
                 break;
-
-            case 9:
+            case 8:
                 std::cout << "End the program..." << "\n";
                 return;
             default:
